@@ -1,38 +1,15 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+:root {
+  --text-b: Ubuntu-Bold;
+  --text-m: Ubuntu-Medium;
+  --text-r: Ubuntu-Reguler;
+  --p-blue: hsl(243, 100%, 62%);
+  --m-blue: hsl(213, 96%, 18%);
+  --pa-blue: hsl(228, 100%, 84%);
+  --l-blue: hsl(206, 94%, 87%);
+  --str-red: hsl(354, 84%, 57%);
+  --c-grey: hsl(231, 11%, 63%);
+  --l-grey: hsl(229, 24%, 87%);
+  --sec-white: hsl(217, 100%, 97%);
+  --sec2-white: hsl(231, 100%, 99%);
+  --white: hsl(0, 0%, 100%);
 }
