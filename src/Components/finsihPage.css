@@ -1,0 +1,48 @@
+.list-style{
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding-top: 1.4em;
+}
+ul{
+    list-style-type: none;
+}
+.details{
+    background-color: var(--sec2-white);
+    padding: 1.4em;
+    font-size: 0.98em;
+    border-radius: 0.5em;
+}
+.list-p{
+    padding-bottom: 1.4em;
+    text-decoration: underline;
+}
+.list-p:hover{
+    color: var(--p-blue);
+    cursor: pointer;
+}
+hr {
+    border: none;
+    height: 1px;
+    background-color: var(--l-grey); 
+}
+
+.list-h{
+    padding-top: 1em;
+}
+.header{
+    color: var(--m-blue);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.total-m{
+    display: flex;
+    justify-content: space-between;
+}
+.total-info{
+    padding: 0 1.2em;
+}
+.total-info h3{
+    color: var(--p-blue);
+}

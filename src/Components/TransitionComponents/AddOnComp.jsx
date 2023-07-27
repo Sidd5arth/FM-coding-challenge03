@@ -1,28 +1,66 @@
 import React from 'react'
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
+import './addonComp.css';
 
-function AddOnComp({delayTime, addonHeading, addonSubheading}) {
-  const contentRef = useRef(null);
+function AddOnComp({delayTime, name, addonPrice, addonHeading, addonSubheading, animate, addonState, addonInfo, setAddonInfo}) {
   const delay = Number(delayTime);
  
   const [doAnimation, setDoAnimation] = useState(false);
- 
+
   useEffect(() => {
-      const timer = setTimeout(() => {
-        setDoAnimation(true);
-      }, [delay]);
-      return () => clearTimeout(timer); 
-  }, [delay]);
+    const timer = setTimeout(() => {
+      setDoAnimation(true);
+    }, [delay]);
+    return () =>{ 
+      clearTimeout(timer)
+    }; 
+}, [delay]);
+
+const handleCheckboxChange = (e) => {
+  const addonName = e.target.name;
+  const addonState = e.target.checked;
+
+  if(addonState === false){
+    addonPrice = "";
+  }
+
+  const addonExists = addonInfo.some((addon) => addon.name === addonName);
+
+  if (addonExists) {
+    const updatedAddons = addonInfo.map((addon) =>
+      addon.name === addonName ? { ...addon, state: addonState, addPrice: addonPrice} : addon
+    );
+    setAddonInfo(updatedAddons);
+  } else {
+    const addonDetails = {
+      name: addonName,
+      state: addonState,
+    };
+    setAddonInfo([...addonInfo, addonDetails]);
+  }
+};
+
+ 
+
   return (
-    <div ref={contentRef}>
-        <div className="addon-content">
+    <div>
+        <div className={`addon-content ${addonState ? "selected-addon" : ""} ${doAnimation && animate ? "input-in" : ""}`}>
             <div className="addonType">
-                <input type='checkbox' className='addon-checkbox'/>
+              <label className='checkbox'>
+                <input 
+                name={name}
+                type='checkbox' 
+                className='addon-checkbox'
+                onChange={handleCheckboxChange}
+                />
+                <span className='check-img'></span>
+              </label>
                 <div className="addonText">
                   <h4>{addonHeading}</h4>
                   <p>{addonSubheading}</p>
                 </div>
             </div>
+            <p className='addon-p'>{addonPrice}</p>
         </div>
     </div>
   )

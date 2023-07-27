@@ -36,6 +36,7 @@
       opacity: 1;
     }
   }
+
 .form-title-active{
     opacity: 1;
 }
@@ -86,13 +87,14 @@
     justify-content: space-between;
     width: 72%;
     padding: 1em 5.6em;
+    transition: all 0.3s cubic-bezier(.76,.06,.12,.94);
 }
 .input-styles{
     display: flex;
     flex-direction: column;
     gap: 0.5em;
     transition: all 0.5s cubic-bezier(.76,.06,.12,.94);
-    transform: translateY(50%);
+    transform: translateY(60%);
     opacity: 0;
 }
 .input-styles-lable{
@@ -101,6 +103,7 @@
 }
 .title-p{
     color: var(--c-grey);
+    margin-bottom: 1.4em;
 }
 .title-h{
     color: var(--m-blue);
@@ -113,6 +116,15 @@
     border-radius: 0.5em;
     outline: 0.1em solid var(--l-grey);
     border: none;
+    transition: all 0.4s cubic-bezier(.76,.06,.12,.94);
+}
+.inner-input:hover{
+    outline: 0.1em solid var(--p-blue);
+    cursor: pointer;
+}
+.bnts{
+    display: flex;
+    justify-content: space-between;
 }
 .form-btn{
     padding: 1em 1.5em;
@@ -120,17 +132,33 @@
     background-color: var(--m-blue);
     border: none;
     width: 25%;
-    margin-left: 75%;
     border-radius: 0.5em;
+}
+.form-btn2{
+    padding: 0em 0em;
+    color: var(--m-grey);
+    background-color: var(--white);
+    border: none;
 }
 .form-container{
     display: flex;
     flex-direction: column;
     gap: 1.5em;
     margin-top: 1.5em;
+    transition: all 0.3s cubic-bezier(.76,.06,.12,.94);
+
+}
+.addon-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1.5em;
 }
 .title-space{
     margin-top: 1em;
+}
+.light-text{
+    color: var(--c-grey);
 }
 
 /* transitions */
@@ -138,14 +166,56 @@
     transform: translateY(0%);
     opacity: 1;
 }
+.card-container.pop{
+    transform: scale(100%) translateY(0%);
+}
+.plan-image.pop{
+    transform: scale(100%) translateX(0%);
+}
+.plan-type.pop{
+    transform: scaleX(100%);
+}
+
+.btn-shake{
+    background-color: rgb(255, 71, 71);
+    animation-name: shake;
+    animation-duration: 0.5s; /* or: Xms */
+    animation-iteration-count: 1;
+    animation-direction: alternate; /* or: normal */
+    animation-timing-function: cubic-bezier(.76,.06,.12,.94); /* or: ease, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) */
+    animation-fill-mode: forwards; /* or: backwards, both, none */
+    animation-delay: 0.1s; /* or: Xms */
+    transition: all 0.5s cubic-bezier(.76,.06,.12,.94);
+    box-shadow: 0px 2px 26px 1px rgba(255,71,71,0.78);
+}
+
+@keyframes shake{
+    
+     10%, 90% {
+       transform: translate3d(-1px, 0, 0);
+     }
+     20%, 80% {
+       transform: translate3d(2px, 0, 0);
+     }
+     30%, 50%, 70% {
+       transform: translate3d(-4px, 0, 0);
+     }
+     40%, 60% {
+       transform: translate3d(4px, 0, 0);
+     }
+
+}
 
 /* card */
 .plan-image{
     height: 2.5em;
     width: 2.5em;
     border-radius: 2em;
+    transform: scale(0%) translateX(200%);
     background-size: cover;
+    transition: all 0.5s cubic-bezier(.76,.06,.12,.94);
 }
+
 .card-container{
     border: 0.11em solid var(--l-grey);
     display: flex;
@@ -153,11 +223,12 @@
     justify-content: space-between;
     border-radius: 0.5em;
     padding: 1em;
-    height: 13em;
     width: 33.33%;
+    transform: scale(0%) translateY(-60%);
+    transition: all 0.3s cubic-bezier(.76,.06,.12,.94);
+    cursor: pointer;
 }
 .card-display{
-    margin-top: 1em;
     display: flex;
     gap: 1em;
     font-size: 0.9em;
@@ -168,15 +239,29 @@
     justify-content: center;
     background-color: var(--sec2-white);
     padding: 0.8em;
+    margin-top: 0.7em;
     border-radius: 0.6em;
     font-size: 0.9em;
+    transform: scaleX(0%);
+    transition: all 0.55s cubic-bezier(.76,.06,.12,.94);
+}
+.selected-card{
+    border-color: var(--p-blue);
+    background-color: var(--sec-white);
 }
 .card-info{
     display: flex;
     flex-direction: column;
     gap: 0.2em;
+    margin-top: 3.5em;
+    transition: all 0.5s cubic-bezier(.76,.06,.12,.94);
 }
 .card-container:hover{
     border: 0.11em solid var(--p-blue);
     background-color: var(--sec2-white);
+}
+
+.total-info{
+    display: flex;
+    justify-content: space-between;
 }

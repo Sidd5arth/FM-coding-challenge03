@@ -2,7 +2,7 @@ import React from 'react'
 import LoginPage1 from './LoginPage1';
 
 function Sidebar({pageTitle}) {
-    console.log(pageTitle().currentStep);
+
   return (
     <div className="side-bar">
         <div className='side-points'>
