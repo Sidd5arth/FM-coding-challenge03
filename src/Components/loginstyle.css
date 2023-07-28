@@ -265,3 +265,19 @@
     display: flex;
     justify-content: space-between;
 }
+.error{
+    border: 0.1em solid var(--str-red);
+    color: var(--str-red);;
+}
+.error:hover{
+    border: none;
+    color: var(--str-red);;
+}
+.p-error{
+    color: var(--str-red);;
+}
+.lable-style{
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.98em;
+}

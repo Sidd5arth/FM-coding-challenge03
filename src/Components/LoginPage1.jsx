@@ -10,11 +10,32 @@ import SelectPlan from './SelectPlan';
 import InfoForm from './InfoForm';
 
 function LoginPage1() {
+  var count = 0;
     const [animate, setAnimate] = useState(true);
     const [step, setStep] = useState(1);
-    const [errorButton, setErrorButton] = useState(true);
+    const [disable, setDisable] = useState(false);
+    const [errorButton, setErrorButton] = useState(false);
+    const [valid, setValid] = useState(false);
     const [activeCard, setActiveCard] = useState({});
     const [planSelect, setPlanSelect] = useState(false)
+    const [validState, setValidState] = useState({
+      emptyEmail: true,
+      emptyName: true,
+      emptyPhone: true,
+      name: {
+        state: false,
+        error: "Enter your name"
+      },
+      phone: {
+        state: false,
+        error: "Enter your Number"
+      },
+      email: {
+        state: false,
+        error: "Enter a valid Email"
+      }
+  
+    });
     const [addonInfo, setAddonInfo] = useState(
       [
         {name:"Online service", state: false, addPrice: ""},
@@ -22,12 +43,28 @@ function LoginPage1() {
         {name:"Customizable profile", state: false, addPrice: ""},
       ]
       );
+      const initialState = () => {
+        if(validState.emptyEmail || validState.emptyName || validState.emptyPhone){
+          return true
+        }else return false;
+      }
 
-
-      console.log(activeCard);
-      console.log(addonInfo);
+      useEffect(() => {
+          if (Object.keys(validState).some(field => validState[field].state)) {
+            setDisable(true);
+            setErrorButton(true);
+          } else if(initialState()){
+            setDisable(false);
+            setValid(false);
+          }else{
+            setDisable(false);
+            setErrorButton(false);
+          }
+      }, [validState]);
+      
 
     const handleNextStep = () => {
+      console.log('clicked');
         setStep(prev => prev+1);
     }
     const handlePrevStep = () => {
@@ -69,10 +106,14 @@ function LoginPage1() {
     }
 
   const handleClickNext = () => {
-    
-    timingSequencer();
 
     if(step === 1){
+      if(initialState()){
+        setErrorButton(true);
+        setDisable(true);
+        setValid(true);
+        return;
+      }
       setActiveCard({});
       setAddonInfo([
         {name:"Online service", state: false, addPrice: ""},
@@ -80,18 +121,25 @@ function LoginPage1() {
         {name:"Customizable profile", state: false, addPrice: ""},
       ])
   }
-    
     if(step === 5){
         setStep(1);
         setAnimate(true);
-    }else{
-        setTimeout(() => {
-            handleNextStep();
-          }, 400);
     }
+      if(!disable){
+        timingSequencer();
+          setTimeout(() => {
+              handleNextStep();
+            }, 400);
+      }
   }
   const handleClickPrev = () => {
-    
+    console.log(step);
+    validState.emptyEmail = true;
+    validState.emptyName = true;
+    validState.emptyPhone = true;
+    console.log(validState.emptyEmail);
+    console.log(validState.emptyPhone);
+    console.log(validState.emptyName);
     timingSequencer();
 
     if(step === 4 || step === 3){
@@ -140,6 +188,9 @@ function LoginPage1() {
             pageTitle={pageTitle}
             setAnimate={setAnimate}
             animate={animate}
+            validState={validState}
+            setValidState={setValidState}
+            valid={valid}
             />}
             {step===2 && 
             <SelectPlan
@@ -162,19 +213,25 @@ function LoginPage1() {
             <FinishingPage
             pageTitle={pageTitle}
             activeCard={activeCard}
+            animate={animate}
             addonInfo={addonInfo}
             />}
             {step===5 && 
             <ThankyouPage
             pageTitle={pageTitle}
-            />}
+            />} 
           <div className="bnts">
           <button onClick={handleClickPrev} className='form-btn2'>Go Back</button>
-          <button onClick={handleClickNext} className= {`form-btn ${errorButton ? "btn-shake" : ""}`}>Next Step</button>
+          <button 
+          disabled={disable} 
+          onClick={handleClickNext} 
+          className= {`form-btn ${errorButton ? "btn-shake" : ""}`}
+          >
+            Next Step
+          </button>
           </div>
         </div>
       </div>
   )
 }
-
 export default LoginPage1;

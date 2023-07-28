@@ -1,7 +1,88 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FormInputComp from './TransitionComponents/FormInputComp'
 
-function InfoForm({pageTitle, setAnimate, animate}) {
+function InfoForm({pageTitle, setAnimate, animate, validState, setValidState, valid}) {
+
+
+  const handleForm = (val) => {
+    if(val.id === 'Email'){
+      setValidState(prevState => ({
+        ...prevState,
+        emptyEmail: false,
+      }))
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const isValidEmail = emailRegex.test(val.detail);
+    console.log(isValidEmail)
+
+      if (!isValidEmail) {
+        setValidState(prevState => ({
+          ...prevState,
+          email: {
+            ...prevState.email,
+            state: true
+          }
+        }));
+      } else {
+        setValidState(prevState => ({
+          ...prevState,
+          email: {
+            ...prevState.email,
+            state: false
+          }
+        }));
+      }
+    }
+    if(val.id === "Phone Number"){
+      setValidState(prevState => ({
+        ...prevState,
+        emptyPhone: false,
+      }))
+      const regex = /^[0-9]+$/;
+      const isNumber = regex.test(val.detail);
+      if (!isNumber) {
+        setValidState(prevState => ({
+          ...prevState,
+          phone: {
+            ...prevState.phone,
+            state: true
+          }
+        }));
+      } else {
+        setValidState(prevState => ({
+          ...prevState,
+          phone: {
+            ...prevState.phone,
+            state: false
+          }
+        }));
+      }
+  }
+    if(val.id === "Name"){
+      setValidState(prevState => ({
+        ...prevState,
+        emptyName: false,
+      }))
+      if (val.id === "Name") {
+      if (val.detail === "") {
+        setValidState(prevState => ({
+          ...prevState,
+          name: {
+            ...prevState.name,
+            state: true
+          }
+        }));
+      } else {
+        setValidState(prevState => ({
+          ...prevState,
+          name: {
+            ...prevState.name,
+            state: false
+          }
+        }));
+      }
+  }
+}
+  }
   return (
     <div className="form-container">
     <div className="form-title">
@@ -15,6 +96,10 @@ function InfoForm({pageTitle, setAnimate, animate}) {
     delayTime="100"
     setAnimate={setAnimate}
     animate={animate}
+    handleForm={handleForm}
+    validState={validState.name.state}
+    error={validState.name.error}
+    valid={valid}
     />
     <FormInputComp
     id="Email" 
@@ -23,6 +108,10 @@ function InfoForm({pageTitle, setAnimate, animate}) {
     delayTime="200"
     setAnimate={setAnimate}
     animate={animate}
+    handleForm={handleForm}
+    validState={validState.email.state}
+    error={validState.email.error}
+    valid={valid}
     />
     <FormInputComp
     id="Phone Number"
@@ -31,9 +120,13 @@ function InfoForm({pageTitle, setAnimate, animate}) {
     delayTime="300"
     setAnimate={setAnimate}
     animate={animate}
+    handleForm={handleForm}
+    valid={valid}
+    validState={validState.phone.state}
+    error={validState.phone.error}
     />
     </div>
   )
 }
 
-export default InfoForm
+export default InfoForm;

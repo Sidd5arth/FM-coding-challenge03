@@ -1,6 +1,16 @@
 import React from 'react'
+import { useEffect, useState } from 'react';
 import finishPage from './finsihPage.css';
-function FinishingPage({pageTitle, activeCard, addonInfo}) {
+function FinishingPage({pageTitle, activeCard, addonInfo, animate}) {
+
+  const [doAnimation, setDoAnimation] = useState(false);
+
+  useEffect(() => {
+      const timer = setTimeout(() => {
+        setDoAnimation(true);
+      }, 50);
+      return () => clearTimeout(timer); 
+  }, []);
   
   function extractNum(inputString) {
     const numbersOnly = inputString.match(/\d+/);
@@ -44,7 +54,7 @@ function FinishingPage({pageTitle, activeCard, addonInfo}) {
       <h1 className='title-h'>{pageTitle()?.heading}</h1>
       <p className='title-p'>{pageTitle()?.subheading}</p>
     </div>
-    <div className="details">
+    <div className={`details ${doAnimation && animate ? "d-animate" : ""}`}>
       <div className="total-m">
       <div className='header'>
          <h4>Arcade</h4>
@@ -66,11 +76,10 @@ function FinishingPage({pageTitle, activeCard, addonInfo}) {
               </ul>
             );
           }
-          // If addon.state is false or undefined, return null
           return null;
         })}
     </div>
-    <div className="total-info">
+    <div className={`total-info ${doAnimation && animate ? "d" : ""}`}>
       <p>total ({duration})</p>
       <h3>${sum}/{val}</h3>
     </div>
