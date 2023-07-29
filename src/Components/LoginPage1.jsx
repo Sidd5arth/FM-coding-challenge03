@@ -273,7 +273,7 @@ function LoginPage1() {
             pageTitle={pageTitle}
             />} 
           {step !== 5 && <div className="bnts">
-          <button onClick={handleClickPrev} className='form-btn2'>Go Back</button>
+          <button onClick={handleClickPrev} className={`form-btn2 ${step === 1 ? "hide" : ""}`}>Go Back</button>
           <div className='error-btn'>
            {step !== 1 && errorButton && <p className="er-p">Please Select an Option</p>}
            {step === 1 && errorButton && <p className="er-p2">Field is empty</p>}
