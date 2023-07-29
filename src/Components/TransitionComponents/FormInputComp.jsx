@@ -18,7 +18,6 @@ const FormInputComp = ({ error, validState, id, label, placeholder, delayTime, a
       detail: e.target.value,
       id: id,
     }
-    console.log(formDetails);
     handleForm(formDetails);
   }
 

@@ -30,9 +30,8 @@ function FinishingPage({pageTitle, activeCard, addonInfo, animate}) {
     duration = 'per year';
   }
 
-  console.log(addonInfo);
-  
   let sum = 0;
+
   if(addonInfo){
     addonInfo.map((ad) => {
       if(ad.state === true){
@@ -43,8 +42,7 @@ function FinishingPage({pageTitle, activeCard, addonInfo, animate}) {
   if(activeCard.price){
     sum = sum + extractNum(activeCard.price);
   }
-
-  const handleChange = () =>{
+  const handleChange = () => {
 
   }
 

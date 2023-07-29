@@ -36,8 +36,6 @@ function SelectPlan({pageTitle, planInfo, planSelect, animate, setActiveCard,act
 
    const handleClick = (selectedPlan) => {
     setActiveCard(selectedPlan)
-    console.log(selectedPlan.name);
-    console.log(selectedPlan);
    }
 
   return (

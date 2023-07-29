@@ -15,7 +15,6 @@ function PickAddon({pageTitle, planSelect, animate, addonInfo, setAddonInfo}) {
       profilePrice: "+$20/yr"
     }
   }
-  console.log(addonInfo);
   return (
     <div className="addon-container">
     <div className="form-title">

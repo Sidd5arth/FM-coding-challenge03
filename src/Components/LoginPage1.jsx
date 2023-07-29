@@ -49,7 +49,6 @@ function LoginPage1() {
         }else return false;
       }
       useEffect(() => {
-        console.log(step)
         if(step === 1){
           if (Object.keys(validState).some(field => validState[field].state)) {
             setDisable(true);
@@ -84,7 +83,6 @@ function LoginPage1() {
       
 
     const handleNextStep = () => {
-      console.log('clicked');
         setStep(prev => prev+1);
     }
     const handlePrevStep = () => {
@@ -126,7 +124,6 @@ function LoginPage1() {
     }
 
   const handleClickNext = () => {
-    console.log(activeCard)
     if(step === 3){
       if(addonInfo.every((addon) => addon.state === false)){
         setDisable(true);
@@ -171,18 +168,13 @@ function LoginPage1() {
           setTimeout(() => {
               handleNextStep();
             }, 400);
-    console.log(disable);
-
       }
   }
   const handleClickPrev = () => {
-    console.log(step);
     validState.emptyEmail = true;
     validState.emptyName = true;
     validState.emptyPhone = true;
-    console.log(validState.emptyEmail);
-    console.log(validState.emptyPhone);
-    console.log(validState.emptyName);
+    
     timingSequencer();
 
     if(step === 4 || step === 3){
@@ -225,6 +217,16 @@ function LoginPage1() {
   }
   const handlePlanInfo = (info) =>{
     setPlanSelect(info);
+  }
+  function addZero(inputString) {
+    const pattern = /\$([1-9]\d*)\/(mo|yr)/;
+    const match = inputString.match(pattern);
+    if (match) {
+      const outputString = inputString.replace(pattern, '$$' + match[1] + '0/$2');
+      return outputString;
+    } else {
+      return inputString;
+    }
   }
 
   return (
@@ -272,6 +274,9 @@ function LoginPage1() {
             />} 
           {step !== 5 && <div className="bnts">
           <button onClick={handleClickPrev} className='form-btn2'>Go Back</button>
+          <div className='error-btn'>
+           {step !== 1 && errorButton && <p className="er-p">Please Select an Option</p>}
+           {step === 1 && errorButton && <p className="er-p2">Field is empty</p>}
           <button 
           disabled={disable} 
           onClick={handleClickNext} 
@@ -279,6 +284,7 @@ function LoginPage1() {
           >
             Next Step
           </button>
+          </div>
           </div>}
         </div>
       </div>

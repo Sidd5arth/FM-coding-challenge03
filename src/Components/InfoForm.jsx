@@ -12,7 +12,6 @@ function InfoForm({pageTitle, setAnimate, animate, validState, setValidState, va
       }))
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const isValidEmail = emailRegex.test(val.detail);
-    console.log(isValidEmail)
 
       if (!isValidEmail) {
         setValidState(prevState => ({

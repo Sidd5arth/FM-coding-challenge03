@@ -131,9 +131,10 @@
     color: var(--white);
     background-color: var(--m-blue);
     border: none;
-    width: 25%;
+    width: 100%;
     border-radius: 0.5em;
     cursor: pointer;
+    position: relative;
 }
 .form-btn2{
     padding: 0em 0em;
@@ -283,3 +284,124 @@
     justify-content: space-between;
     font-size: 0.98em;
 }
+.bnts.error-btn{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.er-p{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 83%;
+    z-index: 100;
+    left: 72.5%;
+    font-size: 0.9em;
+    color: var(--str-red);
+    animation-name: reveal;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+    animation-timing-function: cubic-bezier(.76,.06,.12,.94); 
+    animation-fill-mode: forwards;
+    animation-delay: 0s;
+}
+.er-p2{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 83%;
+    z-index: 100;
+    left: 79%;
+    font-size: 0.9em;
+    color: var(--str-red);
+    animation-name: reveal;
+    animation-duration: 0.5s; 
+    animation-iteration-count: 1;
+    animation-direction: alternate; 
+    animation-timing-function: cubic-bezier(.76,.06,.12,.94); 
+    animation-fill-mode: forwards; 
+    animation-delay: 0s;
+
+}
+@keyframes reveal{
+    
+    0% {
+      opacity: 0%;
+    }
+    100% {
+      opacity: 100%;
+    }
+}
+@media (max-width: 800px) {
+    .login-Container{
+        background-color: white;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        gap: 1em;
+        top: 50%;
+        left: 50%;
+        padding: 1em;
+        transform: translate(-50%, -50%);
+        display: flex;
+        border-radius: 1em;
+        font-size: small;
+    }
+
+    .side-bar{
+        border-radius: 0.6em;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        background-position: bottom;
+    }
+    .about-num{
+        display: none;
+    }
+    .info-form{
+        width: 100%;
+        height: 100vh;
+        gap: 3em;
+        margin: auto 0;
+        padding: 1em 1.5em;
+        margin: 1em 0em;
+    }
+    .side-points{
+        margin: 3em 3em;
+    }
+    .er-p{
+        left: 65%;
+        top: 85%;  
+    }
+    .er-p2{
+        left: 75%; 
+        top: 85%;  
+    }
+    .card-display{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .card-info{
+        position: absolute;
+        top: -50%;
+        left: 20%;
+    }
+    .card-container{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        height: 5.4em;
+        position: relative;
+    }
+    .plan-image{
+        width: 3em;
+        height: 3em;
+    }
+  }
+  
+
+
