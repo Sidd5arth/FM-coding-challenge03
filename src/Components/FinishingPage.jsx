@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import finishPage from './finsihPage.css';
-function FinishingPage({pageTitle, activeCard, addonInfo, animate}) {
+function FinishingPage({pageTitle, activeCard, addonInfo, animate, handleChange}) {
 
   const [doAnimation, setDoAnimation] = useState(false);
 
@@ -41,9 +41,6 @@ function FinishingPage({pageTitle, activeCard, addonInfo, animate}) {
   }
   if(activeCard.price){
     sum = sum + extractNum(activeCard.price);
-  }
-  const handleChange = () => {
-
   }
 
   return (

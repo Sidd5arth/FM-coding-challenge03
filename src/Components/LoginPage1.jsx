@@ -228,6 +228,9 @@ function LoginPage1() {
       return inputString;
     }
   }
+  const handleChange = () =>{
+    setStep(2);
+  }
 
   return (
     <div className='login-Container'>
@@ -267,6 +270,7 @@ function LoginPage1() {
             activeCard={activeCard}
             animate={animate}
             addonInfo={addonInfo}
+            handleChange={handleChange}
             />}
             {step===5 && 
             <ThankyouPage
