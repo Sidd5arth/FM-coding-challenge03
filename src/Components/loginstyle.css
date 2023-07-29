@@ -278,7 +278,7 @@
     justify-content: space-between;
 }
 .error{
-    border: 0.1em solid var(--str-red);
+    outline: 0.1em solid var(--str-red);
     color: var(--str-red);;
 }
 .error:hover{

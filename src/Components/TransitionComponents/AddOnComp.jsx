@@ -50,6 +50,7 @@ const handleCheckboxChange = (e) => {
                 <input 
                 name={name}
                 type='checkbox' 
+                checked={addonState}
                 className='addon-checkbox'
                 onChange={handleCheckboxChange}
                 />

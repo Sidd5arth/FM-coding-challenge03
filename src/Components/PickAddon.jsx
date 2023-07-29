@@ -2,6 +2,9 @@ import React from 'react'
 import AddOnComp from './TransitionComponents/AddOnComp'
 
 function PickAddon({pageTitle, planSelect, animate, addonInfo, setAddonInfo}) {
+
+  // const [checkValue, setCheckValue] = useState(false);
+
   let priceData = {
     servicePrice: "+$1/mo",
     storagePrice: "+$2/mo",

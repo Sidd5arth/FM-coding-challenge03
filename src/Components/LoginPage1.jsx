@@ -179,17 +179,17 @@ function LoginPage1() {
 
     if(step === 4 || step === 3){
       setDisable(false);
-      setTimeout(() => {
-        setAddonInfo([
-          {name:"Online service", state: false, addPrice: ""},
-          {name:"Larger storage", state: false, addPrice: ""},
-          {name:"Customizable profile", state: false, addPrice: ""},
-        ])
-      }, 400);
+      // setTimeout(() => {
+      //   setAddonInfo([
+      //     {name:"Online service", state: false, addPrice: ""},
+      //     {name:"Larger storage", state: false, addPrice: ""},
+      //     {name:"Customizable profile", state: false, addPrice: ""},
+      //   ])
+      // }, 400);
   }
     if(step === 3){
       setTimeout(() => {
-      setActiveCard({});
+      // setActiveCard({});
       setPlanSelect(false);
       }, 400);
   }
@@ -203,12 +203,12 @@ function LoginPage1() {
         setErrorButton(false);
         setDisable(false);
         setAnimate(true);
-        setActiveCard({});
-        setAddonInfo( [
-          {name:"Online service", state: false, addPrice: ""},
-          {name:"Larger storage", state: false, addPrice: ""},
-          {name:"Customizable profile", state: false, addPrice: ""},
-        ])
+        // setActiveCard({});
+        // setAddonInfo( [
+        //   {name:"Online service", state: false, addPrice: ""},
+        //   {name:"Larger storage", state: false, addPrice: ""},
+        //   {name:"Customizable profile", state: false, addPrice: ""},
+        // ])
     }else{
         setTimeout(() => {
             handlePrevStep();
@@ -218,16 +218,7 @@ function LoginPage1() {
   const handlePlanInfo = (info) =>{
     setPlanSelect(info);
   }
-  function addZero(inputString) {
-    const pattern = /\$([1-9]\d*)\/(mo|yr)/;
-    const match = inputString.match(pattern);
-    if (match) {
-      const outputString = inputString.replace(pattern, '$$' + match[1] + '0/$2');
-      return outputString;
-    } else {
-      return inputString;
-    }
-  }
+
   const handleChange = () =>{
     setStep(2);
   }
