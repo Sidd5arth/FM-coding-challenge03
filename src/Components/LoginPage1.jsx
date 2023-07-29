@@ -48,8 +48,9 @@ function LoginPage1() {
           return true
         }else return false;
       }
-
       useEffect(() => {
+        console.log(step)
+        if(step === 1){
           if (Object.keys(validState).some(field => validState[field].state)) {
             setDisable(true);
             setErrorButton(true);
@@ -60,7 +61,26 @@ function LoginPage1() {
             setDisable(false);
             setErrorButton(false);
           }
-      }, [validState]);
+        }
+        if(step === 2){
+          if(Object.keys(activeCard).length === 0){
+            setDisable(true);
+            setErrorButton(true);
+          }else{
+            setDisable(false);
+            setErrorButton(false);
+          }
+        }
+        if(step === 3){
+          if(addonInfo.every((addon) => addon.state === false)){
+            setDisable(true);
+            setErrorButton(true);
+          }else{
+            setDisable(false);
+            setErrorButton(false);
+          }
+        }
+      }, [validState, activeCard, setDisable, addonInfo]);
       
 
     const handleNextStep = () => {
@@ -93,8 +113,8 @@ function LoginPage1() {
             currentStep:4,
         }
         if(step === 5) return {
-            heading: "Thankyou",
-            subheading: "Thankyou for confirming your subscription! We hope you have fun using our platform, If you ever need support, please frll free to email us at @loremgaming.com",
+            heading: "Thankyou!",
+            subheading: "Thankyou for confirming your subscription! I hope you have fun experience with this interface, for frontend related work and queries, please feel free to email me at @sidd5art5@gmail.com",
         }
     }
 
@@ -106,7 +126,27 @@ function LoginPage1() {
     }
 
   const handleClickNext = () => {
-
+    console.log(activeCard)
+    if(step === 3){
+      if(addonInfo.every((addon) => addon.state === false)){
+        setDisable(true);
+        setErrorButton(true);
+        return
+      }else{
+        setErrorButton(false);
+        setDisable(false)
+      }
+    }
+    if(step === 2){
+      if(Object.keys(activeCard).length === 0){
+        setErrorButton(true);
+        setDisable(true)
+        return;
+      }else{
+        setErrorButton(false);
+        setDisable(false)
+      }
+    }
     if(step === 1){
       if(initialState()){
         setErrorButton(true);
@@ -114,6 +154,7 @@ function LoginPage1() {
         setValid(true);
         return;
       }
+
       setActiveCard({});
       setAddonInfo([
         {name:"Online service", state: false, addPrice: ""},
@@ -130,6 +171,8 @@ function LoginPage1() {
           setTimeout(() => {
               handleNextStep();
             }, 400);
+    console.log(disable);
+
       }
   }
   const handleClickPrev = () => {
@@ -143,6 +186,7 @@ function LoginPage1() {
     timingSequencer();
 
     if(step === 4 || step === 3){
+      setDisable(false);
       setTimeout(() => {
         setAddonInfo([
           {name:"Online service", state: false, addPrice: ""},
@@ -158,8 +202,14 @@ function LoginPage1() {
       }, 400);
   }
 
+  if(step === 2){
+    setErrorButton(false);
+    setDisable(false);
+  }
     
     if(step === 1){
+        setErrorButton(false);
+        setDisable(false);
         setAnimate(true);
         setActiveCard({});
         setAddonInfo( [
@@ -220,7 +270,7 @@ function LoginPage1() {
             <ThankyouPage
             pageTitle={pageTitle}
             />} 
-          <div className="bnts">
+          {step !== 5 && <div className="bnts">
           <button onClick={handleClickPrev} className='form-btn2'>Go Back</button>
           <button 
           disabled={disable} 
@@ -229,7 +279,7 @@ function LoginPage1() {
           >
             Next Step
           </button>
-          </div>
+          </div>}
         </div>
       </div>
   )

@@ -133,12 +133,14 @@
     border: none;
     width: 25%;
     border-radius: 0.5em;
+    cursor: pointer;
 }
 .form-btn2{
     padding: 0em 0em;
     color: var(--m-grey);
     background-color: var(--white);
     border: none;
+    cursor: pointer;
 }
 .form-container{
     display: flex;

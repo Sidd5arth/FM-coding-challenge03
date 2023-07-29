@@ -92,7 +92,7 @@ function InfoForm({pageTitle, setAnimate, animate, validState, setValidState, va
     <FormInputComp
     id="Name"
     label="Name"
-    placeholder="e.g.Stephen King"
+    placeholder="e.g.Siddharth Kushwaha"
     delayTime="100"
     setAnimate={setAnimate}
     animate={animate}
@@ -104,7 +104,7 @@ function InfoForm({pageTitle, setAnimate, animate, validState, setValidState, va
     <FormInputComp
     id="Email" 
     label="Email Address"
-    placeholder="e.g.StephenKing@gmail.com"
+    placeholder="e.g.sidd5art5@gmail.com"
     delayTime="200"
     setAnimate={setAnimate}
     animate={animate}

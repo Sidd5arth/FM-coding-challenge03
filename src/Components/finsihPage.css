@@ -12,8 +12,8 @@ ul{
     padding: 1.4em;
     font-size: 0.98em;
     border-radius: 0.5em;
-    transform: scale(0%) translateY(-130%);
-    transition: all 0.5s cubic-bezier(.76,.06,.12,.94);
+    transform: scaleY(0%) translateY(-130%);
+    transition: all 0.5s cubic-bezier(.36,.07,.26,.91);
 }
 .list-p{
     padding-bottom: 1.4em;
@@ -45,7 +45,7 @@ hr {
 .total-info{
     padding: 0 1.2em;
     opacity: 0;
-    transition: all 0.5s cubic-bezier(.76,.06,.12,.94);
+    transition: all 0.5s cubic-bezier(.76,.06,.12,.94) 0.1s;
 }
 .total-info h3{
     color: var(--p-blue);
@@ -54,5 +54,5 @@ hr {
     opacity: 1;
 }
 .d-animate{
-    transform: scale(100%) translateY(0%);
+    transform: scaleY(100%) translateY(0%);
 }
