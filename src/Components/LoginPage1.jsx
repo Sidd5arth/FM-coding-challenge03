@@ -24,15 +24,18 @@ function LoginPage1() {
       emptyPhone: true,
       name: {
         state: false,
-        error: "Enter your name"
+        error: "Enter your name",
+        value: "",
       },
       phone: {
         state: false,
-        error: "Enter your Number"
+        error: "Enter your Number",
+        value:"",
       },
       email: {
         state: false,
-        error: "Enter a valid Email"
+        error: "Enter a valid Email",
+        value:"",
       }
   
     });
@@ -43,8 +46,11 @@ function LoginPage1() {
         {name:"Customizable profile", state: false, addPrice: ""},
       ]
       );
+      console.log(validState.name.value);   
+      console.log(validState.email.value);   
+      console.log(validState.phone.value);   
       const initialState = () => {
-        if(validState.emptyEmail || validState.emptyName || validState.emptyPhone){
+        if(validState.name.value === "" || validState.email.value === "" || validState.phone.value === ""){
           return true
         }else return false;
       }
@@ -151,13 +157,6 @@ function LoginPage1() {
         setValid(true);
         return;
       }
-
-      setActiveCard({});
-      setAddonInfo([
-        {name:"Online service", state: false, addPrice: ""},
-        {name:"Larger storage", state: false, addPrice: ""},
-        {name:"Customizable profile", state: false, addPrice: ""},
-      ])
   }
     if(step === 5){
         setStep(1);
@@ -179,17 +178,9 @@ function LoginPage1() {
 
     if(step === 4 || step === 3){
       setDisable(false);
-      // setTimeout(() => {
-      //   setAddonInfo([
-      //     {name:"Online service", state: false, addPrice: ""},
-      //     {name:"Larger storage", state: false, addPrice: ""},
-      //     {name:"Customizable profile", state: false, addPrice: ""},
-      //   ])
-      // }, 400);
   }
     if(step === 3){
       setTimeout(() => {
-      // setActiveCard({});
       setPlanSelect(false);
       }, 400);
   }
@@ -203,12 +194,6 @@ function LoginPage1() {
         setErrorButton(false);
         setDisable(false);
         setAnimate(true);
-        // setActiveCard({});
-        // setAddonInfo( [
-        //   {name:"Online service", state: false, addPrice: ""},
-        //   {name:"Larger storage", state: false, addPrice: ""},
-        //   {name:"Customizable profile", state: false, addPrice: ""},
-        // ])
     }else{
         setTimeout(() => {
             handlePrevStep();
@@ -220,7 +205,12 @@ function LoginPage1() {
   }
 
   const handleChange = () =>{
-    setStep(2);
+    setAnimate(false);
+    setTimeout(() => {
+      setStep(2);
+      setAnimate(true);
+    }, 400);
+
   }
 
   return (

@@ -1,11 +1,13 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './addonComp.css';
 
 function AddOnComp({delayTime, name, addonPrice, addonHeading, addonSubheading, animate, addonState, addonInfo, setAddonInfo}) {
   const delay = Number(delayTime);
  
   const [doAnimation, setDoAnimation] = useState(false);
+
+  const checkboxRef = useRef(null); 
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -39,30 +41,27 @@ const handleCheckboxChange = (e) => {
     setAddonInfo([...addonInfo, addonDetails]);
   }
 };
-
  
 
   return (
-    <div>
-        <div className={`addon-content ${addonState ? "selected-addon" : ""} ${doAnimation && animate ? "input-in" : ""}`}>
-            <div className="addonType">
-              <label className='checkbox'>
-                <input 
-                name={name}
-                type='checkbox' 
-                checked={addonState}
-                className='addon-checkbox'
-                onChange={handleCheckboxChange}
-                />
-                <span className='check-img'></span>
-              </label>
-                <div className="addonText">
-                  <h4>{addonHeading}</h4>
-                  <p>{addonSubheading}</p>
-                </div>
+    <div className={`addon-content ${addonState ? "selected-addon" : ""} ${doAnimation && animate ? "input-in" : ""}`}>
+        <div className="addonType">
+          <label className='checkbox'>
+            <input 
+            name={name}
+            type='checkbox' 
+            checked={addonState}
+            className='addon-checkbox'
+            onChange={handleCheckboxChange}
+            />
+            <span className='check-img'></span>
+          </label>
+            <div className="addonText">
+              <h4>{addonHeading}</h4>
+              <p>{addonSubheading}</p>
             </div>
-            <p className='addon-p'>{addonPrice}</p>
         </div>
+        <p className='addon-p'>{addonPrice}</p>
     </div>
   )
 }

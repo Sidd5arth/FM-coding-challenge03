@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import loginstyle from '../loginstyle.css';
 
-const FormInputComp = ({ error, validState, id, label, placeholder, delayTime, animate, handleForm, valid}) => {
+const FormInputComp = ({ error, value, validState, id, label, placeholder, delayTime, animate, handleForm, valid}) => {
 
   const delay = Number(delayTime);
   const [doAnimation, setDoAnimation] = useState(false);
@@ -30,6 +30,7 @@ const FormInputComp = ({ error, validState, id, label, placeholder, delayTime, a
       <input 
       title={id}
       id={id}
+      value={value}
       className={`inner-input ${validState || valid ? "error" : ""}`}
       onChange={handleChange}
       placeholder={placeholder}/>

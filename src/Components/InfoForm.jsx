@@ -18,7 +18,8 @@ function InfoForm({pageTitle, setAnimate, animate, validState, setValidState, va
           ...prevState,
           email: {
             ...prevState.email,
-            state: true
+            state: true,
+            value: val.detail
           }
         }));
       } else {
@@ -26,7 +27,8 @@ function InfoForm({pageTitle, setAnimate, animate, validState, setValidState, va
           ...prevState,
           email: {
             ...prevState.email,
-            state: false
+            state: false,
+            value: val.detail
           }
         }));
       }
@@ -43,7 +45,8 @@ function InfoForm({pageTitle, setAnimate, animate, validState, setValidState, va
           ...prevState,
           phone: {
             ...prevState.phone,
-            state: true
+            state: true,
+            value: val.detail
           }
         }));
       } else {
@@ -51,7 +54,8 @@ function InfoForm({pageTitle, setAnimate, animate, validState, setValidState, va
           ...prevState,
           phone: {
             ...prevState.phone,
-            state: false
+            state: false,
+            value: val.detail
           }
         }));
       }
@@ -67,7 +71,8 @@ function InfoForm({pageTitle, setAnimate, animate, validState, setValidState, va
           ...prevState,
           name: {
             ...prevState.name,
-            state: true
+            state: true,
+            value: val.detail
           }
         }));
       } else {
@@ -75,7 +80,8 @@ function InfoForm({pageTitle, setAnimate, animate, validState, setValidState, va
           ...prevState,
           name: {
             ...prevState.name,
-            state: false
+            state: false,
+            value: val.detail
           }
         }));
       }
@@ -93,6 +99,7 @@ function InfoForm({pageTitle, setAnimate, animate, validState, setValidState, va
     label="Name"
     placeholder="e.g.Siddharth Kushwaha"
     delayTime="100"
+    value={validState.name.value}
     setAnimate={setAnimate}
     animate={animate}
     handleForm={handleForm}
@@ -105,6 +112,7 @@ function InfoForm({pageTitle, setAnimate, animate, validState, setValidState, va
     label="Email Address"
     placeholder="e.g.sidd5art5@gmail.com"
     delayTime="200"
+    value={validState.email.value}
     setAnimate={setAnimate}
     animate={animate}
     handleForm={handleForm}
@@ -117,6 +125,7 @@ function InfoForm({pageTitle, setAnimate, animate, validState, setValidState, va
     label="Phone Number"
     placeholder="e.g. +1 234 567 890"
     delayTime="300"
+    value={validState.phone.value}
     setAnimate={setAnimate}
     animate={animate}
     handleForm={handleForm}
