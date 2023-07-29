@@ -136,6 +136,9 @@
     cursor: pointer;
     position: relative;
 }
+.form-btn:hover{
+    background-color: rgb(42, 42, 124);
+}
 .form-btn2{
     padding: 0em 0em;
     color: var(--m-grey);
@@ -150,6 +153,9 @@
     margin-top: 1.5em;
     transition: all 0.3s cubic-bezier(.76,.06,.12,.94);
 
+}
+.blubtn:hover{
+    background-color: var(--pa-blue);
 }
 .addon-container{
     display: flex;

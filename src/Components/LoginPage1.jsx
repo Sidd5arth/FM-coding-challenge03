@@ -281,13 +281,21 @@ function LoginPage1() {
           <div className='error-btn'>
            {step !== 1 && errorButton && <p className="er-p">Please Select an Option</p>}
            {step === 1 && errorButton && <p className="er-p2">Field is empty</p>}
+          {step == 4 ? <button 
+          disabled={disable} 
+          onClick={handleClickNext} 
+          className= {`form-btn blubtn ${errorButton ? "btn-shake" : ""}`}
+          >
+            Confirm
+          </button> :
           <button 
           disabled={disable} 
           onClick={handleClickNext} 
           className= {`form-btn ${errorButton ? "btn-shake" : ""}`}
           >
             Next Step
-          </button>
+          </button> 
+          }
           </div>
           </div>}
         </div>
