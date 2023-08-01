@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import finishPage from './finsihPage.css';
-function FinishingPage({pageTitle, activeCard, addonInfo, animate, handleChange}) {
+function FinishingPage({pageTitle, activeCard, addonInfo, animate, handleChange, planSelect}) {
 
   const [doAnimation, setDoAnimation] = useState(false);
 
@@ -20,8 +20,8 @@ function FinishingPage({pageTitle, activeCard, addonInfo, animate, handleChange}
       return null; 
     }
   }
-  if(activeCard.price){
-    var val = activeCard.price.slice(-2);
+  if(planSelect.price){
+    var val = planSelect.price.slice(-2);
   }
   let duration = "";
   if(val === 'mo'){
@@ -39,9 +39,10 @@ function FinishingPage({pageTitle, activeCard, addonInfo, animate, handleChange}
       }
     })
   }
-  if(activeCard.price){
-    sum = sum + extractNum(activeCard.price);
+  if(planSelect.price){
+    sum = sum + extractNum(planSelect.price);
   }
+
 
   return (
     <div className="form-container">
@@ -55,7 +56,7 @@ function FinishingPage({pageTitle, activeCard, addonInfo, animate, handleChange}
          <h4>Arcade</h4>
          <p onClick={handleChange} className='list-p'>Change</p>
       </div>
-         <h4 className='list-h'>{activeCard.price}</h4>
+         <h4 className='list-h'>{planSelect.price}</h4>
       </div>
       <hr/>
       {addonInfo.map((addon) => {

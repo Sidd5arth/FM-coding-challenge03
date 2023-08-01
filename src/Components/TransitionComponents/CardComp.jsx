@@ -35,7 +35,7 @@ const handleClick = () =>{
       <div className="card-info">
          <h4 style={{color: "var(--m-blue)"}} >{heading}</h4>
          <p className='light-text'>{price}</p>
-         {planSelect && <p style={{color: "var(--m-blue)"}}>2 month free</p>}
+         {planSelect.state && <p style={{color: "var(--m-blue)"}}>2 month free</p>}
       </div>
     </div>
   )

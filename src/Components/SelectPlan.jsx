@@ -8,8 +8,8 @@ import ToggleComp from './TransitionComponents/ToggleComp';
 import { useEffect } from 'react';
 
 
-function SelectPlan({pageTitle, planInfo, planSelect, animate, setActiveCard,activeCard}) {
-    
+function SelectPlan({pageTitle, planInfo, planSelect, animate, setActiveCard, activeCard, setPlanSelect}) {
+
   const [doAnimation, setDoAnimation] = useState(false);
 
   useEffect(() => {
@@ -21,12 +21,13 @@ function SelectPlan({pageTitle, planInfo, planSelect, animate, setActiveCard,act
     }; 
 }, []);
 
+
   let cardDetails = {
     arcade: "$9/mo",
     advance: "$12/mo",
     pro: "$15/mo",
   }
-  if(planSelect){
+  if(planSelect.state){
     cardDetails = {
       arcade: "$90/yr",
       advance: "$120/yr",
@@ -36,7 +37,14 @@ function SelectPlan({pageTitle, planInfo, planSelect, animate, setActiveCard,act
 
    const handleClick = (selectedPlan) => {
     setActiveCard(selectedPlan)
+    setPlanSelect({
+      ...planSelect,
+      name: selectedPlan.name,
+      price: selectedPlan.price,
+    })
    }
+
+  
 
   return (
     <div className="form-container">
@@ -51,6 +59,7 @@ function SelectPlan({pageTitle, planInfo, planSelect, animate, setActiveCard,act
        heading="Arcade"
        price={cardDetails.arcade}
        planSelect={planSelect}
+       setPlanSelect={setPlanSelect}
        delayTime="50"
        animate={animate}
        selected={activeCard.name === 'Arcade'}
@@ -80,7 +89,9 @@ function SelectPlan({pageTitle, planInfo, planSelect, animate, setActiveCard,act
       <p>Monthly</p>
       <ToggleComp
       planInfo={planInfo}
-      setActiveCard={setActiveCard}
+      planSelect={planSelect}
+      setPlanSelect={setPlanSelect}
+      // planChange={handleClick}
       />
       <p>yearly</p>
     </div>

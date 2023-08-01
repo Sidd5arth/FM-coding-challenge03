@@ -38,7 +38,7 @@ function InfoForm({pageTitle, setAnimate, animate, validState, setValidState, va
         ...prevState,
         emptyPhone: false,
       }))
-      const regex = /^[0-9]+$/;
+      const regex = /^\+\d{4,}$/;
       const isNumber = regex.test(val.detail);
       if (!isNumber) {
         setValidState(prevState => ({

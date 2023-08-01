@@ -17,7 +17,11 @@ function LoginPage1() {
     const [errorButton, setErrorButton] = useState(false);
     const [valid, setValid] = useState(false);
     const [activeCard, setActiveCard] = useState({});
-    const [planSelect, setPlanSelect] = useState(false)
+    const [planSelect, setPlanSelect] = useState({
+      state: false,
+      name: "",
+      price:"",
+    })
     const [validState, setValidState] = useState({
       emptyEmail: true,
       emptyName: true,
@@ -45,15 +49,14 @@ function LoginPage1() {
         {name:"Larger storage", state: false, addPrice: ""},
         {name:"Customizable profile", state: false, addPrice: ""},
       ]
-      );
-      console.log(validState.name.value);   
-      console.log(validState.email.value);   
-      console.log(validState.phone.value);   
+      ); 
+
       const initialState = () => {
         if(validState.name.value === "" || validState.email.value === "" || validState.phone.value === ""){
           return true
         }else return false;
       }
+
       useEffect(() => {
         if(step === 1){
           if (Object.keys(validState).some(field => validState[field].state)) {
@@ -86,8 +89,7 @@ function LoginPage1() {
           }
         }
       }, [validState, activeCard, setDisable, addonInfo]);
-      
-
+    
     const handleNextStep = () => {
         setStep(prev => prev+1);
     }
@@ -181,7 +183,6 @@ function LoginPage1() {
   }
     if(step === 3){
       setTimeout(() => {
-      setPlanSelect(false);
       }, 400);
   }
 
@@ -201,8 +202,15 @@ function LoginPage1() {
     }
   }
   const handlePlanInfo = (info) =>{
-    setPlanSelect(info);
+    setPlanSelect({ 
+      ...planSelect,
+      state: info,
+    });
   }
+  useEffect(() => {
+    handleToggleChange(planSelect);
+    handleAddonChange(planSelect);
+  }, [planSelect.state]);
 
   const handleChange = () =>{
     setAnimate(false);
@@ -211,6 +219,48 @@ function LoginPage1() {
       setAnimate(true);
     }, 400);
 
+  }
+
+function addZero(inputString) {
+  const slashIndex = inputString.indexOf('/');
+  if (slashIndex > 0) {
+    const modifiedString = inputString.slice(0, slashIndex) + '0' + inputString.slice(slashIndex);
+    const finalString = modifiedString.replace(/..$/, 'yr');
+    return finalString;
+  }
+  return inputString;
+}
+function removeZero(inputString) {
+  const slashIndex = inputString.indexOf('/');
+  if (slashIndex > 1 && inputString[slashIndex - 1] === '0') {
+    const modifiedString = inputString.slice(0, slashIndex - 1) + inputString.slice(slashIndex);
+    const finalString = modifiedString.replace(/..$/, 'mo');
+    return finalString;
+  }
+  return inputString;
+}
+
+  const handleToggleChange = (planSelect) =>{
+    if(planSelect.state === true && planSelect.price !== ""){
+      setPlanSelect({
+        ...planSelect,
+        price: addZero(planSelect.price)
+      })
+    }else if(planSelect.state === false && planSelect.price !== ""){
+      setPlanSelect({
+        ...planSelect,
+        price: removeZero(planSelect.price)
+      })
+    }
+  }
+  const handleAddonChange = () => {
+    addonInfo.map((addon) => {
+      if(planSelect.state === true && addon.addPrice !== ""){
+        addon.addPrice = addZero(addon.addPrice);
+      }else if(planSelect.state === false && addon.addPrice !== ""){
+        addon.addPrice = removeZero(addon.addPrice);
+      }
+    })
   }
 
   return (
@@ -232,6 +282,7 @@ function LoginPage1() {
             <SelectPlan
             pageTitle={pageTitle}
             planSelect={planSelect}
+            setPlanSelect={setPlanSelect}
             animate={animate}
             planInfo={handlePlanInfo}
             activeCard={activeCard}
@@ -252,6 +303,7 @@ function LoginPage1() {
             animate={animate}
             addonInfo={addonInfo}
             handleChange={handleChange}
+            planSelect={planSelect}
             />}
             {step===5 && 
             <ThankyouPage

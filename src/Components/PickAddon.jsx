@@ -10,7 +10,7 @@ function PickAddon({pageTitle, planSelect, animate, addonInfo, setAddonInfo}) {
     storagePrice: "+$2/mo",
     profilePrice: "+$2/mo"
   }
-  if(planSelect){
+  if(planSelect.state){
   priceData =
    {
       servicePrice: "+$10/yr",
@@ -34,6 +34,7 @@ function PickAddon({pageTitle, planSelect, animate, addonInfo, setAddonInfo}) {
     setAddonInfo={setAddonInfo}
     addonInfo={addonInfo}
     addonState={addonInfo[0].state}
+    planSelect={planSelect}
     />
     <AddOnComp
     delayTime="200"
@@ -45,6 +46,7 @@ function PickAddon({pageTitle, planSelect, animate, addonInfo, setAddonInfo}) {
     setAddonInfo={setAddonInfo}
     addonInfo={addonInfo}
     addonState={addonInfo[1].state}
+    planSelect={planSelect}
     />
     <AddOnComp
     delayTime="300"
@@ -56,6 +58,7 @@ function PickAddon({pageTitle, planSelect, animate, addonInfo, setAddonInfo}) {
     setAddonInfo={setAddonInfo}
     addonInfo={addonInfo}
     addonState={addonInfo[2].state}
+    planSelect={planSelect}
     />
     </div>
   )

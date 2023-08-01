@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState, useRef } from 'react';
 import './addonComp.css';
 
-function AddOnComp({delayTime, name, addonPrice, addonHeading, addonSubheading, animate, addonState, addonInfo, setAddonInfo}) {
+function AddOnComp({delayTime, name, addonPrice, addonHeading, addonSubheading, animate, addonState, addonInfo, setAddonInfo, planSelect}) {
   const delay = Number(delayTime);
  
   const [doAnimation, setDoAnimation] = useState(false);
@@ -17,6 +17,10 @@ function AddOnComp({delayTime, name, addonPrice, addonHeading, addonSubheading, 
       clearTimeout(timer)
     }; 
 }, [delay]);
+
+//   useEffect(() => {
+//     handleCheckboxChange();
+// }, planSelect);
 
 const handleCheckboxChange = (e) => {
   const addonName = e.target.name;
